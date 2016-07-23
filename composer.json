@@ -1,0 +1,23 @@
+{
+  "name": "joridos/harvest-php",
+  "description": "PHP wrapper library for the Harvest API with Laravel support.",
+  "type": "library",
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": "^6.2",
+    "laravel/framework": "^5.2"
+  },
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Joridos",
+      "email": "joridoss@gmail.com",
+      "homepage": "http://joridos.github.io",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"Harvest\\": "src/Harvest"}
+  },
+  "minimum-stability": "stable"
+}
