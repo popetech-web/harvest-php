@@ -13,7 +13,7 @@ use Harvest\Api\Connection;
  */
 class Projects extends AbstractResource implements ResourceInterface
 {
-    const PATH = 'projects';
+    const HARVEST_PATH = 'projects';
 
     /**
      * @param integer $clientId
@@ -24,9 +24,9 @@ class Projects extends AbstractResource implements ResourceInterface
     {
         $newUri = null;
 
-        $newUri = '?' . http_build_query(array('client' => $clientId, 'updated_since' => $this->appendUpdatedSinceParam($updatedSince)));
+        $newUri = '?' . http_build_query(array('client' => $clientId, 'updated_since' => $this->_appendUpdatedSinceParam($updatedSince)));
 
-        $this->uri = self::PATH . $newUri;
+        $this->_uri = self::HARVEST_PATH . $newUri;
         return parent::getAll();
     }
 
@@ -60,7 +60,7 @@ class Projects extends AbstractResource implements ResourceInterface
      * @param string|DateTime $updatedSince
      * @return bool|string
      */
-    private function appendUpdatedSinceParam($updatedSince = null)
+    private function _appendUpdatedSinceParam($updatedSince = null)
     {
         if( is_null($updatedSince) ) {
             return false;

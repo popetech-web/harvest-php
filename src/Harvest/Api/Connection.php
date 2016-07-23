@@ -18,7 +18,7 @@ class Connection
      *
      * @var array
      */
-    protected $options = [
+    protected $_options = [
         'username' => '',
         'password' => '',
         'account'  => ''
@@ -59,7 +59,7 @@ class Connection
         if (is_null($this->httpClient))
         {
             $this->httpClient = new GuzzleClient([
-                'base_uri' => $this->options['account'],
+                'base_uri' => $this->_options['account'],
             ]);
         }
 
@@ -83,7 +83,7 @@ class Connection
         $options['headers']['User-Agent'] = 'PHP Wrapper Library for Harvest API';
         $options['headers']['Content-Type'] = 'application/json';
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['Authorization'] = 'Basic (' . base64_encode( $this->options['username'] . ":" . $this->options['password'] ). ')';
+        $options['headers']['Authorization'] = 'Basic (' . base64_encode( $this->_options['username'] . ":" . $this->_options['password'] ). ')';
         $request = $client->request($method, $url, $options);
 
         return (string)$request->getBody();
@@ -96,33 +96,22 @@ class Connection
      */
     public function setOptions($options)
     {
-        $this->options = array_merge($this->options, $options);
+        $this->_options = array_merge($this->_options, $options);
     }
 
     /**
      * Get a single option value.
      *
-     * @param  string $option
+     * @param  ar $option
      * @throws Exception
      * @return string
      */
     public function getOption($option)
     {
-        if ( !array_key_exists($option, $this->options)) {
+        if ( !array_key_exists($option, $this->_options)) {
             throw new Exception("The requested option [$option] has not been set or is not a valid option key.");
         }
 
-        return $this->options[$option];
-    }
-
-    /**
-     * Generates a formatted http query string.
-     *
-     * @param  array $params
-     * @return string
-     */
-    private function httpBuildQuery($params)
-    {
-        return '?' . http_build_query($params);
+        return $this->_options[$option];
     }
 }

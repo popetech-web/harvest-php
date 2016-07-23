@@ -13,8 +13,8 @@ use Harvest\Api\Connection;
  */
 abstract class AbstractResource
 {
-    private $connection;
-    protected $uri;
+    private $_connection;
+    protected $_uri;
 
     /**
      * AbstractResource constructor.
@@ -22,8 +22,8 @@ abstract class AbstractResource
      */
     public function __construct(Connection $connection)
     {
-        $this->connection = $connection;
-        $this->uri = '';
+        $this->_connection = $connection;
+        $this->_uri = '';
     }
 
     /**
@@ -31,6 +31,6 @@ abstract class AbstractResource
      */
     public function getAll()
     {
-        return $this->connection->request('GET', $this->uri);
+        return $this->_connection->request('GET', $this->_uri);
     }
 }

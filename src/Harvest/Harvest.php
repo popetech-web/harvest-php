@@ -13,7 +13,7 @@ use Harvest\Resources\Clients;
  */
 class Harvest
 {
-    private $client;
+    private $_connection;
 
     /**
      * Harvest constructor.
@@ -23,30 +23,14 @@ class Harvest
      */
     public function __construct($username, $password, $account)
     {
-        $this->client = new Connection(array( 'username' => $username, 'password' => $password, 'account' => $account));
-        $this->projects = new Projects($this->client);
-        $this->clients = new Clients($this->client);
-        $this->tasks = new Clients($this->client);
+        $this->_connection = new Connection(array( 'username' => $username, 'password' => $password, 'account' => $account));
+        $this->projects = new Projects($this->_connection);
+        $this->clients = new Clients($this->_connection);
+        $this->tasks = new Clients($this->_connection);
     }
 
     /**
-     * @param null $username
-     * @param null $password
-     * @return Connection|GuzzleHttp\Psr7\Response
-     */
-    private function getConnection($username = null, $password = null)
-    {
-        if (is_null($this->client)
-            && !is_null($username)
-            && !is_null($password)) {
-            $this->client = new Connection(array($username, $password));
-        }
-
-        return clone $this->client;
-    }
-
-    /**
-     * @return Projects|GuzzleHttp\Psr7\Response
+     * @return Projects
      */
     public function getProjects()
     {
@@ -54,7 +38,7 @@ class Harvest
     }
 
     /**
-     * @return Projects|GuzzleHttp\Psr7\Response
+     * @return Projects
      */
     public function getClients()
     {
@@ -62,7 +46,7 @@ class Harvest
     }
 
     /**
-     * @return Clients|GuzzleHttp\Psr7\Response
+     * @return Clients
      */
     public function getTasks()
     {
