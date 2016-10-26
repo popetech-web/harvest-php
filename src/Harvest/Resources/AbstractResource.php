@@ -43,9 +43,9 @@ abstract class AbstractResource
         if( is_null($updatedSince) ) {
             return false;
         } else if( $updatedSince instanceOf DateTime ) {
-            return urlencode($updatedSince->format("Y-m-d G:i"));
+            return $updatedSince->format("Y-m-d G:i");
         } else {
-            return urlencode($updatedSince);
+            return $updatedSince;
         }
     }
 }
