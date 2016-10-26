@@ -43,6 +43,7 @@ abstract class AbstractResource
         if( is_null($updatedSince) ) {
             return false;
         } else if( $updatedSince instanceOf DateTime ) {
+            $updatedSince->setTimezone(new DateTimeZone('Z')); // convert to correct harvest intern timezone
             return $updatedSince->format("Y-m-d G:i");
         } else {
             return $updatedSince;
