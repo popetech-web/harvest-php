@@ -22,6 +22,7 @@ class Timesheets extends AbstractResource implements ResourceInterface
      */
     public function getAllForDay(\DateTime $forDay = null, $userId = null, $slim = 1)
     {
+        // TODO: http://help.getharvest.com/api/reports-api/reports/time-reports/
         if (is_null($forDay))
             $forDay = new \DateTime();
 
