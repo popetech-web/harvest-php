@@ -35,7 +35,7 @@ class Tasks extends AbstractResource implements ResourceInterface
     {
         $all = json_decode($this->getAll(), true);
         $actives = array_filter($all, function ($data) {
-            return $data['task']['active'] == false;
+            return $data['task']['deactivated'] == true;
         });
 
         return $actives;
@@ -48,7 +48,7 @@ class Tasks extends AbstractResource implements ResourceInterface
     {
         $all = json_decode($this->getAll(), true);
         $actives = array_filter($all, function ($data) {
-            return $data['task']['active'] == true;
+            return $data['task']['deactivated'] == false;
         });
 
         return $actives;
