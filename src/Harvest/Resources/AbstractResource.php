@@ -44,7 +44,7 @@ abstract class AbstractResource
             return false;
         } else if( $updatedSince instanceOf \DateTime ) {
             $updatedSince->setTimezone(new \DateTimeZone('Z')); // convert to correct harvest intern timezone
-            return $updatedSince->format("Y-m-d G:i");
+            return $updatedSince->format("Y-m-d G:i:s");
         } else {
             return $updatedSince;
         }
