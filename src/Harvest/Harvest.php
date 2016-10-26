@@ -42,7 +42,7 @@ class Harvest
      */
     public function getClients()
     {
-        return $this->projects;
+        return $this->clients;
     }
 
     /**
