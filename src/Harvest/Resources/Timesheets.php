@@ -34,18 +34,14 @@ class Timesheets extends AbstractResource implements ResourceInterface
         $this->_uri = self::HARVEST_PATH_DAILY . "{$dayOfTheYear}/{$year}" . $newUri;
         return parent::getAll();
     }
-    
+
     /**
      * @return string
      */
     public function getInactive()
     {
-        $all = json_decode($this->getAll(), true);
-        $actives = array_filter($all, function ($data) {
-            return $data['task']['active'] == false;
-        });
-
-        return $actives;
+        // not available for this resource - so return empty string
+        return "";
     }
 
     /**
@@ -53,9 +49,9 @@ class Timesheets extends AbstractResource implements ResourceInterface
      */
     public function getActive()
     {
-        $all = json_decode($this->getAll(), true);
+        $all = json_decode($this->getAllForDay(), true);
         $actives = array_filter($all, function ($data) {
-            return $data['task']['active'] == true;
+            return true; // active not available - so return all entries
         });
 
         return $actives;
