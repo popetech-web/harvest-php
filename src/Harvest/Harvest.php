@@ -2,8 +2,10 @@
 namespace Harvest;
 
 use Harvest\Api\Connection;
-use Harvest\Resources\Projects;
+use Harvest\Resources\Tasks;
 use Harvest\Resources\Clients;
+use Harvest\Resources\Projects;
+use Harvest\Resources\Timesheets;
 
 /**
  * Class Harvest
@@ -27,6 +29,7 @@ class Harvest
         $this->projects = new Projects($this->_connection);
         $this->clients = new Clients($this->_connection);
         $this->tasks = new Tasks($this->_connection);
+        $this->timesheets = new Timesheets($this->_connection);
     }
 
     /**
@@ -46,10 +49,18 @@ class Harvest
     }
 
     /**
-     * @return Clients
+     * @return Tasks
      */
     public function getTasks()
     {
         return $this->tasks;
+    }
+
+    /**
+     * @return Timesheets
+     */
+    public function getTimesheets()
+    {
+        return $this->timesheets;
     }
 }
