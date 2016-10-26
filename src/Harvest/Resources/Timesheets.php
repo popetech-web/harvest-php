@@ -30,7 +30,7 @@ class Timesheets extends AbstractResource implements ResourceInterface
 
         $newUri = null;
 
-        $newUri = '?' . http_build_query(array('slim' => $slim, 'user_id' => $userId));
+        $newUri = '?' . http_build_query(array('slim' => $slim, 'of_user' => $userId));
 
         $this->_uri = self::HARVEST_PATH_DAILY . "/{$dayOfTheYear}/{$year}" . $newUri;
         return parent::getAll();
