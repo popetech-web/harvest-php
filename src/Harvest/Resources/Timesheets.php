@@ -34,4 +34,30 @@ class Timesheets extends AbstractResource implements ResourceInterface
         $this->_uri = self::HARVEST_PATH_DAILY . "{$dayOfTheYear}/{$year}" . $newUri;
         return parent::getAll();
     }
+    
+    /**
+     * @return string
+     */
+    public function getInactive()
+    {
+        $all = json_decode($this->getAll(), true);
+        $actives = array_filter($all, function ($data) {
+            return $data['task']['active'] == false;
+        });
+
+        return $actives;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActive()
+    {
+        $all = json_decode($this->getAll(), true);
+        $actives = array_filter($all, function ($data) {
+            return $data['task']['active'] == true;
+        });
+
+        return $actives;
+    }
 }
