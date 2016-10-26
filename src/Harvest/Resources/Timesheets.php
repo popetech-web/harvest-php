@@ -31,7 +31,7 @@ class Timesheets extends AbstractResource implements ResourceInterface
 
         $newUri = '?' . http_build_query(array('updated_since' => $this->_appendUpdatedSinceParam($updatedSince)));
 
-        $this->_uri = self::HARVEST_PATH_DAILY . "{$dayOfTheYear}/{$year}" . $newUri;
+        $this->_uri = self::HARVEST_PATH_DAILY . "/{$dayOfTheYear}/{$year}" . $newUri;
         return parent::getAll();
     }
 
