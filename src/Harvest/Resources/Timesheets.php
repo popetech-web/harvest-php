@@ -16,10 +16,11 @@ class Timesheets extends AbstractResource implements ResourceInterface
 
 	/**
      * @param DateTime $forDay
-     * @param string|DateTime $updatedSince
+     * @param integer $userId
+     * @param integer $slim
      * @return string
      */
-    public function getAllForDay(\DateTime $forDay = null, $updatedSince = null)
+    public function getAllForDay(\DateTime $forDay = null, $userId = null, $slim = 1)
     {
         if (is_null($forDay))
             $forDay = new \DateTime();
@@ -29,7 +30,7 @@ class Timesheets extends AbstractResource implements ResourceInterface
 
         $newUri = null;
 
-        $newUri = '?' . http_build_query(array('updated_since' => $this->_appendUpdatedSinceParam($updatedSince)));
+        $newUri = '?' . http_build_query(array('slim' => $slim, 'user_id' => $userId));
 
         $this->_uri = self::HARVEST_PATH_DAILY . "/{$dayOfTheYear}/{$year}" . $newUri;
         return parent::getAll();
