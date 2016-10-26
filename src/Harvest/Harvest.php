@@ -26,7 +26,7 @@ class Harvest
         $this->_connection = new Connection(array( 'username' => $username, 'password' => $password, 'account' => $account));
         $this->projects = new Projects($this->_connection);
         $this->clients = new Clients($this->_connection);
-        $this->tasks = new Clients($this->_connection);
+        $this->tasks = new Tasks($this->_connection);
     }
 
     /**
@@ -38,7 +38,7 @@ class Harvest
     }
 
     /**
-     * @return Projects
+     * @return Clients
      */
     public function getClients()
     {
