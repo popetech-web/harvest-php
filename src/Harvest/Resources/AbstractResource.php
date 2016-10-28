@@ -33,4 +33,20 @@ abstract class AbstractResource
     {
         return $this->_connection->request('GET', $this->_uri);
     }
+
+    /**
+     * @param string|DateTime $updatedSince
+     * @return bool|string
+     */
+    protected function _appendUpdatedSinceParam($updatedSince = null)
+    {
+        if( is_null($updatedSince) ) {
+            return false;
+        } else if( $updatedSince instanceOf \DateTime ) {
+            $updatedSince->setTimezone(new \DateTimeZone('Z')); // convert to correct harvest intern timezone
+            return $updatedSince->format("Y-m-d G:i:s");
+        } else {
+            return $updatedSince;
+        }
+    }
 }

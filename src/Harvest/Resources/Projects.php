@@ -55,20 +55,4 @@ class Projects extends AbstractResource implements ResourceInterface
 
         return $actives;
     }
-
-    /**
-     * @param string|DateTime $updatedSince
-     * @return bool|string
-     */
-    private function _appendUpdatedSinceParam($updatedSince = null)
-    {
-        if( is_null($updatedSince) ) {
-            return false;
-        } else if( $updatedSince instanceOf DateTime ) {
-            return urlencode($updatedSince->format("Y-m-d G:i"));
-        } else {
-            return urlencode($updatedSince);
-        }
-    }
-
 }
