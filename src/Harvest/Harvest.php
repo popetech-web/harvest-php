@@ -6,6 +6,7 @@ use Harvest\Resources\Tasks;
 use Harvest\Resources\Clients;
 use Harvest\Resources\Projects;
 use Harvest\Resources\Timesheets;
+use Harvest\Resources\Timereports;
 
 /**
  * Class Harvest
@@ -30,6 +31,7 @@ class Harvest
         $this->clients = new Clients($this->_connection);
         $this->tasks = new Tasks($this->_connection);
         $this->timesheets = new Timesheets($this->_connection);
+        $this->timereports = new Timereports($this->_connection);
     }
 
     /**
