@@ -24,7 +24,7 @@ class Timereports extends AbstractResource implements ResourceInterface
      * @param string|DateTime $updatedSince
      * @return string
      */
-    public function getAll($basePath, $dateFrom, $dateTo = null, $updatedSince = null)
+    private function getAllWithParams($basePath, $dateFrom, $dateTo = null, $updatedSince = null)
     {
         $newUri = null;
 
@@ -47,7 +47,7 @@ class Timereports extends AbstractResource implements ResourceInterface
     public function getAllForUser($userId, $dateFrom, $dateTo = null, $updatedSince = null)
     {
         $basePath = self::HARVEST_PATH_FOR_USERS . "/{$userId}/";
-        return $this->getAll($basePath, $dateFrom, $dateTo, $updatedSince);
+        return $this->getAllWithParams($basePath, $dateFrom, $dateTo, $updatedSince);
     }
 
     /**
@@ -60,7 +60,7 @@ class Timereports extends AbstractResource implements ResourceInterface
     public function getAllForProject($projectId, $dateFrom, $dateTo = null, $updatedSince = null)
     {
         $basePath = self::HARVEST_PATH_FOR_PROJECTS . "/{$projectId}/";
-        return $this->getAll($basePath, $dateFrom, $dateTo, $updatedSince);
+        return $this->getAllWithParams($basePath, $dateFrom, $dateTo, $updatedSince);
     }
 
     /**

@@ -65,4 +65,12 @@ class Harvest
     {
         return $this->timesheets;
     }
+
+    /**
+     * @return Timesheets
+     */
+    public function getTimereports()
+    {
+        return $this->timereports;
+    }
 }
