@@ -78,6 +78,8 @@ class Connection
      */
     public function request($method, $url, array $options = [])
     {
+        $url = 'https://'.$this->_options['account'].'.harvestapp.com/'.$url;
+
         $client = $this->getHttpClient();
         // Set headers to accept only json data.
         $options['headers']['User-Agent'] = 'PHP Wrapper Library for Harvest API';
