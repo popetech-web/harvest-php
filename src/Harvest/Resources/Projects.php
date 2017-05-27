@@ -29,6 +29,20 @@ class Projects extends AbstractResource implements ResourceInterface
         $this->_uri = self::HARVEST_PATH . $newUri;
         return parent::getAll();
     }
+    
+    /**
+     * @param integer $projectId
+     * @param string|DateTime $updatedSince
+     * @return string
+     */
+    public function getAssignments($projectId, $updatedSince = null) {
+        $newUri = '/'.$projectId.'/task_assignments';
+
+        $newUri .= '?' . http_build_query(array('updated_since' => $this->_appendUpdatedSinceParam($updatedSince)));
+
+        $this->_uri = self::HARVEST_PATH . $newUri;
+        return parent::getAll();
+    }
 
     /**
      * @return string
